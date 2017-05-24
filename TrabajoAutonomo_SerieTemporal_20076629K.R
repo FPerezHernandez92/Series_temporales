@@ -29,8 +29,8 @@ cat("El resultado del test de Dickey-Fuller aumentado es un p-value=", resul$p.v
 print("Podemos decir debido a este resultado, que la serie es Estacionaria con un nivel de confianza del 99%. Además en el gráfico ACF vemos como con un Lag = 6, que la serie va a ser Estacionaria")
 
 # Dividimos la serie en training y test (nos quedamos con los NTest últimos para el test)
-NPred= 12; # Valores a predecir
-NTest= 12; # Valores que vamos a dejar para test
+NPred= 6; # Valores a predecir
+NTest= 6; # Valores que vamos a dejar para test
 serieTr<- serie[1:(length(serie)-NTest)];
 tiempoTr<- 1:length(serieTr)
 serieTs<- serie[(length(serie)-NTest+1):length(serie)];
@@ -151,7 +151,7 @@ plot.ts(serieTr.SinEst, xlim=c(1, tiempoTs[length(tiempoTs)]))
 title("Serie sin estacionalidad")
 lines(tiempoTs[1:(length(tiempoTs))], serieTs.SinEst, col="red")
 print("Serie sin la estacionalidad.")
-cat("Con esto, podemos comenzar probando un modelo ARIMA(2, 0, 2):\n");
+cat("Con esto, podemos comenzar probando un modelo ARIMA(1, 0, 2):\n");
 
 #######################################
 #2.6.1 Modelo ARIMA
@@ -475,3 +475,4 @@ plot.ts(serie, xlim=c(1, max(tiempoPred)), ylim=c(-0.2, 1.5))
 title("Predicción Final")
 lines(valoresAjustados, col="blue")
 lines(valoresPredichos, col="red")
+
